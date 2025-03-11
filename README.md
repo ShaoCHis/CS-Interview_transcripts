@@ -5,7 +5,12 @@
     + [1.2、如果查看一个已经运行的进程中某一个线程CPU的占用率？代码怎么大致计算？](#12-如果查看一个已经运行的进程中某一个线程CPU的占用率？代码怎么大致计算？)
     + [1.3、如何查看一个进程已经打开的文件描述符的数量](#13-如何查看一个进程已经打开的文件描述符的数量)
     + [1.4、手撕循环队列](#14-手撕循环队列)
-
+   
+  * [2、柠檬微趣-C++服务端开发实习 2025.3.11](#2-柠檬微趣-C++服务端开发实习2025.3.11)
+    + [2.1、字符与字符串对应](#21-字符与字符串对应)
+    + [2.2、寻找较小的更大数](#22-寻找较小的更大数)
+    + [2.3、最短子数组和](#23-最短子数组和)
+    + [2.4、protobuf协议实现](#24-protobuf协议实现)
 
 ## 1、腾讯-天美工作室群IEG-一面 2025.3.6
 
@@ -270,3 +275,50 @@ private:
 }
 ```
 
+## 2、柠檬微趣-C++服务端开发实习 2025.3.11
+
+### 2.1、字符与字符串对应
+给定一个字符串，和一个由多个单词组成的字符串，如果字符串中的字符与单词一一对应，那么说明这个是匹配的，返回True，反之不匹配，返回false
+> "abc" "good study day"
+> True
+> "abc" "good good study"
+> False
+
+```c++
+bool isMatch(string a,string b)
+{
+    istringstream is(b);
+    vector<string> words;
+    string temp;
+    while(is>>temp)
+        words.emplace_back(temp);
+    unordered_map<char,string> ctow;
+    unordered_map<string,char> wtoc;
+    for(int i = 0;i<a.size();i++)
+    {
+        if(ctow.find(a[i])==ctow.end()&&wtoc.find(words[i])==wtoc.end())
+        {
+            ctow[a[i]] = words[i];
+        }
+        else
+        {
+            if(ctow.find(a[i])!=ctow.end()&&wtoc.find(words[i])!=wtoc.end())
+            {
+                if(ctow[a[i]] == words[i]&&wtoc[words[i]]==a[i])
+                    continue;
+                else
+                    return false;
+            }
+        }
+    }
+    return true;
+}
+```
+
+### 2.2、寻找较小的更大数
+
+
+### 2.3、最短子数组和
+
+
+### 2.4、protobuf协议实现
